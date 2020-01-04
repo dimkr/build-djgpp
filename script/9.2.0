@@ -10,7 +10,7 @@ DJGPP_PREFIX=${DJGPP_PREFIX-/usr/local/djgpp}
 ENABLE_LANGUAGES=${ENABLE_LANGUAGES-c,c++}
 
 #DJGPP_DOWNLOAD_BASE="ftp://ftp.delorie.com/pub"
-DJGPP_DOWNLOAD_BASE="https://mirror.koddos.net/djgpp/"
+DJGPP_DOWNLOAD_BASE="https://mirror.koddos.net"
 
 # source tarball versions
 BINUTILS_VERSION=232
