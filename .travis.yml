@@ -16,4 +16,4 @@ addons:
     - xz-utils
 
 script:
-  - ./build-djgpp `ls script/ | sort -V | tail -n 1`
+  - ./build-djgpp.sh `ls script/ | sort -V | tail -n 1`
