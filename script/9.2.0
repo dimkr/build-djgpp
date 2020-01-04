@@ -156,7 +156,7 @@ cd build
 echo "Building binutils"
 mkdir bnu${BINUTILS_VERSION}s
 cd bnu${BINUTILS_VERSION}s
-unzip ../../download/bnu${BINUTILS_VERSION}s.zip || exit 1
+unzip -q ../../download/bnu${BINUTILS_VERSION}s.zip || exit 1
 cd gnu/binutils-* || exit
 
 # exec permission of some files are not set, fix it.
@@ -191,7 +191,7 @@ cd ../../..
 echo "Prepare djcrx"
 mkdir djcrx${DJCRX_VERSION}
 cd djcrx${DJCRX_VERSION}
-unzip ../../download/djcrx${DJCRX_VERSION}.zip || exit 1
+unzip -q ../../download/djcrx${DJCRX_VERSION}.zip || exit 1
 patch -p1 -u < ../../patch/patch-djcrx205.txt || exit 1
 
 cd src/stub
@@ -352,9 +352,9 @@ cd ..
 rm -rf djlsr${DJLSR_VERSION}
 mkdir djlsr${DJLSR_VERSION}
 cd djlsr${DJLSR_VERSION}
-unzip ../../download/djlsr${DJLSR_VERSION}.zip || exit 1
-unzip -o ../../download/djdev${DJDEV_VERSION}.zip "include/*/*" || exit 1
-unzip -o ../../download/djdev${DJDEV_VERSION}.zip "include/*" || exit 1
+unzip -q ../../download/djlsr${DJLSR_VERSION}.zip || exit 1
+unzip -qo ../../download/djdev${DJDEV_VERSION}.zip "include/*/*" || exit 1
+unzip -qo ../../download/djdev${DJDEV_VERSION}.zip "include/*" || exit 1
 patch -p1 -u < ../../patch/patch-djlsr205.txt || exit 1
 if [ "$CC" == "gcc" ]; then
   echo "Building DXE tools."
