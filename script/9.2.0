@@ -220,7 +220,7 @@ cd $BUILDDIR
 tar xJf ../../download/autoconf-${AUTOCONF_VERSION}.tar.xz || exit 1
 cd autoconf-${AUTOCONF_VERSION}/
 ./configure --prefix=$BUILDDIR/tmpinst || exit 1
-${MAKE} all install > /dev/null || exit 1
+MAKEFLAGS= ${MAKE} all install > /dev/null || exit 1
 
 echo "Building automake"
 cd $BUILDDIR
