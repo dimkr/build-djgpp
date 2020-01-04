@@ -35,7 +35,7 @@ if [ `uname` = "FreeBSD" ]; then
   CC=clang
   CXX=clang++
 else
-  MAKE=make
+  MAKE="make -j`nproc`"
 fi
 #CFLAGS="-O2 -g $CFLAGS -std=gnu11"
 
@@ -327,7 +327,7 @@ PATH="$BUILDDIR//tmpinst/bin:$PATH" \
                                  --enable-languages=${ENABLE_LANGUAGES} \
                                  || exit 1
 
-${MAKE} j=4 "PATH=$BUILDDIR/tmpinst/bin:$PATH" || exit 1
+${MAKE} "PATH=$BUILDDIR/tmpinst/bin:$PATH" || exit 1
 
 ${MAKE} install-strip || exit 1
 
