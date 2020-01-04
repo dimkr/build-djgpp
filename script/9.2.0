@@ -172,16 +172,16 @@ sh ./configure \
            --disable-nls \
            || exit 1
 
-${MAKE} configure-bfd || exit 1
-${MAKE} -C bfd stmp-lcoff-h || exit 1
-${MAKE} || exit 1
+${MAKE} configure-bfd > /dev/null || exit 1
+${MAKE} -C bfd stmp-lcoff-h > /dev/null || exit 1
+${MAKE} > /dev/null || exit 1
 
 if [ ! -z $MAKE_CHECK ]; then
   echo "Run ${MAKE} check"
-  ${MAKE} check || exit 1
+  ${MAKE} check > /dev/null || exit 1
 fi
 
-${MAKE} install || exit 1
+${MAKE} install > /dev/null || exit 1
 
 cd ../../..
 # binutils done
@@ -219,7 +219,7 @@ cd $BUILDDIR
 tar xJf ../../download/autoconf-${AUTOCONF_VERSION}.tar.xz || exit 1
 cd autoconf-${AUTOCONF_VERSION}/
 ./configure --prefix=$BUILDDIR/tmpinst || exit 1
-${MAKE} all install || exit 1
+${MAKE} all install > /dev/null || exit 1
 
 echo "Building automake"
 cd $BUILDDIR
@@ -228,7 +228,7 @@ cd automake-${AUTOMAKE_VERSION}/
 PATH="$BUILDDIR//tmpinst/bin:$PATH" \
 ./configure --prefix=$BUILDDIR/tmpinst || exit 1
 PATH="$BUILDDIR//tmpinst/bin:$PATH" \
-${MAKE} all install || exit 1
+${MAKE} all install > /dev/null || exit 1
 
 # build GNU sed if needed.
 SED=sed
@@ -238,7 +238,7 @@ if [ ! -z $SED_VERSION ]; then
   tar xjf ../../download/sed-${SED_VERSION}.tar.bz2 || exit 1
   cd sed-${SED_VERSION}/
   ./configure --prefix=$BUILDDIR/tmpinst || exit 1
-  ${MAKE} all install || exit 1
+  ${MAKE} all install > /dev/null || exit 1
   SED=$BUILDDIR/tmpinst/bin/sed
 fi
 
@@ -276,32 +276,32 @@ cd $BUILDDIR/gmp-*/
 # On some systems, building gmp will fail if CFLAGS is set.
 # Unset CFLAGS during building gmp.
 env -u CFLAGS ./configure --enable-fat --prefix=$BUILDDIR/tmpinst --enable-static --disable-shared || exit 1
-${MAKE} all || exit 1
+${MAKE} all > /dev/null || exit 1
 if [ ! -z $MAKE_CHECK ]; then
   echo "Run ${MAKE} check"
-  ${MAKE} check || exit 1
+  ${MAKE} check > /dev/null || exit 1
 fi
-${MAKE} install || exit 1
+${MAKE} install > /dev/null || exit 1
 
 echo "Building mpfr"
 cd $BUILDDIR/mpfr-${MPFR_VERSION}/
 ./configure --prefix=$BUILDDIR/tmpinst --with-gmp=$BUILDDIR/tmpinst --enable-static --disable-shared || exit 1
-${MAKE} all || exit 1
+${MAKE} all > /dev/null || exit 1
 if [ ! -z $MAKE_CHECK ]; then
   echo "Run ${MAKE} check"
-  ${MAKE} check || exit 1
+  ${MAKE} check > /dev/null || exit 1
 fi
-${MAKE} install || exit 1
+${MAKE} install > /dev/null || exit 1
 
 echo "Building mpc"
 cd $BUILDDIR/mpc-${MPC_VERSION}/
 ./configure --prefix=$BUILDDIR/tmpinst --with-gmp=$BUILDDIR/tmpinst --with-mpfr=$BUILDDIR/tmpinst --enable-static --disable-shared || exit 1
-${MAKE} all || exit 1
+${MAKE} all > /dev/null || exit 1
 if [ ! -z $MAKE_CHECK ]; then
   echo "Run ${MAKE} check"
-  ${MAKE} check || exit 1
+  ${MAKE} check > /dev/null || exit 1
 fi
-${MAKE} install || exit 1
+${MAKE} install > /dev/null || exit 1
 
 echo "Building gcc"
 cd $BUILDDIR/
@@ -327,9 +327,9 @@ PATH="$BUILDDIR//tmpinst/bin:$PATH" \
                                  --enable-languages=${ENABLE_LANGUAGES} \
                                  || exit 1
 
-${MAKE} "PATH=$BUILDDIR/tmpinst/bin:$PATH" || exit 1
+${MAKE} "PATH=$BUILDDIR/tmpinst/bin:$PATH" > /dev/null || exit 1
 
-${MAKE} install-strip || exit 1
+${MAKE} install-strip > /dev/null || exit 1
 
 echo "Copy long name executables to short name."
 (
