@@ -18,3 +18,7 @@ addons:
 
 script:
   - DJGPP_PREFIX=/tmp/djgpp ./build-djgpp.sh `ls script/ | sort -V | tail -n 1`
+
+cache:
+  directories:
+    - download
