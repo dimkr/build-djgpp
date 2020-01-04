@@ -318,7 +318,10 @@ PATH="$BUILDDIR//tmpinst/bin:$PATH" \
                                  --disable-nls \
                                  --disable-plugin \
                                  --disable-lto \
-                                 --enable-lto \
+                                 --disable-gcov \
+                                 --disable-libsanitizer \
+                                 --disable-libssp \
+                                 --disable-libgomp \
                                  --enable-libstdcxx-filesystem-ts \
                                  --enable-libquadmath-support \
                                  --with-gmp=$BUILDDIR/tmpinst \
