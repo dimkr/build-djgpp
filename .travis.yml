@@ -1,0 +1,34 @@
+dist: bionic
+language: minimal
+
+addons:
+  apt:
+    packages:
+    - bison
+    - flex
+    - curl
+    - gcc
+    - g++
+    - make
+    - texinfo
+    - zlib1g-dev
+    - unzip
+    - patch
+    - xz-utils
+
+script:
+  - DJGPP_PREFIX=/tmp/djgpp ./build-djgpp.sh `ls script/ | sort -V | tail -n 1`
+  - tar -C /tmp -c djgpp | bzip2 -9 > djgpp-linux64-gcc`ls script/ | sort -V | tail -n 1 | sed s/\\.//g`.tar.bz2
+
+cache:
+  directories:
+    - download
+
+deploy:
+  provider: releases
+  api_key:
+    secure: pu+YbGLGyQ+Y7lV0zMMOy1yI7MygD+/qDN/NbKd1gVgf9/fBD8tCPrLTPiqKRMy4rdM1zEeZ4ElO90zzUPyevfvCPrYNpuuUOy7qEzOcfRMy1iMhw5myCMYeyiqZTH0INSr8oIGL9Aw4uX1C2ac0oVEK7wJpd22RqAdeELoLHZ3DV3yGEYs125GRf1ecd/cxLgI7+Gx6tB5pFz0w9JGPwps46liYVZe4KUJQF4d8du6lXHuFXMPPi8iPv34Y1UJJLA82B0huXWs98i77m4PcV04ItPSXR/IcFOwiACpKQ8Khx1BmwYG4v1vEA+6bkrtTfGU5gOHWqELSaU7fbJ0P/A/Oc5LN/qozFZEWIE8UQ9FG3ZJOjmlkhp5NhLJ/q6KuEh2wsd4JZWeRWyFSrRuJmdOEAD/AJRFWsfEMu06kJGa8yD2w3P9yNjP7kq4BqpkzicAPAjtl7IKeo19+yNhr0K7kd9UZvCFt6WH2yyvCLDK+GNWhzzis+BCwKVAE3ClmumTC5jOADEwNN5CO6otfOW2jHXcQ5AdPCfEmi3zoV5+M763zmyLuDZOUemjGA2QlWoTyBQrtH3571ZW3Sdufw176uWKmmerXkc2Zn5mkafj/RTOEUurI+9IVii1Xo3ev+thUjSBt1+I8l+DBPb2AakxtpaN5WMDbrAQi/lTnryw=
+  skip_cleanup: true
+  overwrite: true
+  file-glob: true
+  file: "djgpp-linux64-*.tar.bz2"
