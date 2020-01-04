@@ -170,7 +170,7 @@ sh ./configure \
            --target=i586-pc-msdosdjgpp \
            --program-prefix=i586-pc-msdosdjgpp- \
            --disable-werror \
-           --disable-nls \
+           --disable-nls > /dev/null \
            || exit 1
 
 ${MAKE} configure-bfd > /dev/null || exit 1
@@ -219,7 +219,7 @@ echo "Building autoconf"
 cd $BUILDDIR
 tar xJf ../../download/autoconf-${AUTOCONF_VERSION}.tar.xz || exit 1
 cd autoconf-${AUTOCONF_VERSION}/
-./configure --prefix=$BUILDDIR/tmpinst || exit 1
+./configure --prefix=$BUILDDIR/tmpinst > /dev/null || exit 1
 ${MAKE} all install > /dev/null || exit 1
 
 echo "Building automake"
@@ -227,7 +227,7 @@ cd $BUILDDIR
 tar xJf ../../download/automake-${AUTOMAKE_VERSION}.tar.xz || exit 1
 cd automake-${AUTOMAKE_VERSION}/
 PATH="$BUILDDIR//tmpinst/bin:$PATH" \
-./configure --prefix=$BUILDDIR/tmpinst || exit 1
+./configure --prefix=$BUILDDIR/tmpinst > /dev/null || exit 1
 PATH="$BUILDDIR//tmpinst/bin:$PATH" \
 MAKEFLAGS= ${MAKE} all install > /dev/null || exit 1
 
@@ -238,7 +238,7 @@ if [ ! -z $SED_VERSION ]; then
   cd $BUILDDIR
   tar xjf ../../download/sed-${SED_VERSION}.tar.bz2 || exit 1
   cd sed-${SED_VERSION}/
-  ./configure --prefix=$BUILDDIR/tmpinst || exit 1
+  ./configure --prefix=$BUILDDIR/tmpinst > /dev/null || exit 1
   ${MAKE} all install > /dev/null || exit 1
   SED=$BUILDDIR/tmpinst/bin/sed
 fi
@@ -276,7 +276,7 @@ echo "Building gmp"
 cd $BUILDDIR/gmp-*/
 # On some systems, building gmp will fail if CFLAGS is set.
 # Unset CFLAGS during building gmp.
-env -u CFLAGS ./configure --enable-fat --prefix=$BUILDDIR/tmpinst --enable-static --disable-shared || exit 1
+env -u CFLAGS ./configure --enable-fat --prefix=$BUILDDIR/tmpinst --enable-static --disable-shared > /dev/null || exit 1
 ${MAKE} all > /dev/null || exit 1
 if [ ! -z $MAKE_CHECK ]; then
   echo "Run ${MAKE} check"
@@ -286,7 +286,7 @@ ${MAKE} install > /dev/null || exit 1
 
 echo "Building mpfr"
 cd $BUILDDIR/mpfr-${MPFR_VERSION}/
-./configure --prefix=$BUILDDIR/tmpinst --with-gmp=$BUILDDIR/tmpinst --enable-static --disable-shared || exit 1
+./configure --prefix=$BUILDDIR/tmpinst --with-gmp=$BUILDDIR/tmpinst --enable-static --disable-shared > /dev/null || exit 1
 ${MAKE} all > /dev/null || exit 1
 if [ ! -z $MAKE_CHECK ]; then
   echo "Run ${MAKE} check"
@@ -296,7 +296,7 @@ ${MAKE} install > /dev/null || exit 1
 
 echo "Building mpc"
 cd $BUILDDIR/mpc-${MPC_VERSION}/
-./configure --prefix=$BUILDDIR/tmpinst --with-gmp=$BUILDDIR/tmpinst --with-mpfr=$BUILDDIR/tmpinst --enable-static --disable-shared || exit 1
+./configure --prefix=$BUILDDIR/tmpinst --with-gmp=$BUILDDIR/tmpinst --with-mpfr=$BUILDDIR/tmpinst --enable-static --disable-shared > /dev/null || exit 1
 ${MAKE} all > /dev/null || exit 1
 if [ ! -z $MAKE_CHECK ]; then
   echo "Run ${MAKE} check"
@@ -325,7 +325,7 @@ PATH="$BUILDDIR//tmpinst/bin:$PATH" \
                                  --with-mpfr=$BUILDDIR/tmpinst \
                                  --with-mpc=$BUILDDIR/tmpinst \
                                  --enable-version-specific-runtime-libs \
-                                 --enable-languages=${ENABLE_LANGUAGES} \
+                                 --enable-languages=${ENABLE_LANGUAGES} > /dev/null \
                                  || exit 1
 
 ${MAKE} "PATH=$BUILDDIR/tmpinst/bin:$PATH" > /dev/null || exit 1
