@@ -35,7 +35,8 @@ if [ `uname` = "FreeBSD" ]; then
   CC=clang
   CXX=clang++
 else
-  MAKE="make -j`nproc`"
+  MAKE=make
+  export MAKEFLAGS=-j`nproc`
 fi
 #CFLAGS="-O2 -g $CFLAGS -std=gnu11"
 
