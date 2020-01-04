@@ -18,7 +18,7 @@ addons:
 
 script:
   - DJGPP_PREFIX=/tmp/djgpp ./build-djgpp.sh `ls script/ | sort -V | tail -n 1`
-  - tar -C /tmp -c djgpp | bzip2 -9 > djgpp-linux64-gcc`ls script/ | sort -V | tail -n 1 | sed s/\\.//g`.tar.bz2
+  - tar -C /tmp -c djgpp | bzip2 -9 > djgpp-linux64-gcc`ls script/ | sort -V | tail -n 1 | tr -d .`.tar.bz2
 
 cache:
   directories:
