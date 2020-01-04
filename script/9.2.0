@@ -210,7 +210,7 @@ cd ..
 # djcrx done
 
 # build gcc
-tar -xjvf ../download/djcross-gcc-${GCC_VERSION}.tar.bz2 || exit 1
+tar -xjf ../download/djcross-gcc-${GCC_VERSION}.tar.bz2 || exit 1
 cd djcross-gcc-${GCC_VERSION}/
 
 BUILDDIR=`pwd`
